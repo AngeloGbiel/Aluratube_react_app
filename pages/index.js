@@ -1,16 +1,12 @@
 import config from '../config.json'
 import styled from 'styled-components'
-import { CSSReset } from '../src/components/CSSReset'
 import Menu from '../src/components/Menu'
 import { StyledTimeline } from '../src/components/Timeline'
 import { useState } from 'react'
 export default function HomePage() {
-    // const styledPages = { backgroundColor: "red" }
-    // console.log(config.playlists)
     const [valorDoFiltro, setValorDoFiltro] = useState("")
     return (
         <>
-            <CSSReset/>
             <div style={{
                 display:"flex",
                 flexDirection:'column',
@@ -31,6 +27,9 @@ export default function HomePage() {
 // }
 
 const StyledHeader = styled.div`
+
+    background-color: ${({ theme }) => theme.backgroundLevel1};
+
     img{
         width: 80px;
         height: 80px;
@@ -80,7 +79,7 @@ function Timeline({searchValue, ...props}) { //pegar o searchValue e todas as ou
                                 return titleNormalized.includes(searchValue)
                             }).map((video,i)=>{
                                 return(
-                                    <a href={video.url}>
+                                    <a key={i} href={video.url}>
                                         <img src={video.thumb}/>
                                         <span>
                                             {video.title}
